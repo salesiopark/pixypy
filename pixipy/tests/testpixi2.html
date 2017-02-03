@@ -1,0 +1,92 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>pixipy</title>
+</head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/4.3.4/pixi.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"
+          integrity="sha256-/SIrNqv8h6QGKDuNoLGA4iret+kyesCkHGzVUUV0shc="
+          crossorigin="anonymous"></script>
+<body style='margin-top:0;margin-left:0;margin-right:0;margin-bottom:0;'>
+  <script type="text/javascript">
+    
+      let app = new PIXI.Application(400, 500, {backgroundColor : 0x000000});
+      document.body.appendChild(app.view);
+      //======================================================================
+      class Button {
+          
+          constructor(text, x, y, width, height, fontSize) {
+              let body = new PIXI.Container();
+              this.body = body;
+              this.body.x = x;
+              this.body.y = y;
+              
+              this.box = new PIXI.Graphics();
+              // draw a rounded rectangle
+              this.box.lineStyle(2, 0xbbff33, 1);
+              this.box.beginFill(0x99e600, 1);//box.beginFill(0xFF00BB, 0.25);
+              this.box.drawRoundedRect(-width/2, -height/2, width, height, 10);//{{width}},{{height}}
+              this.box.endFill();
+              this.body.addChild(this.box);
+              
+              let textStyle = new PIXI.TextStyle({
+                    fontFamily: 'Arial',
+                    fontSize: fontSize, //{{fontSize}}
+                    fill: ['#ffffff', '#ffff99'], // gradient
+                });
+              this.label = new PIXI.Text(text, textStyle);
+              this.label.anchor.set(0.5);
+              this.body.addChild(this.label);
+              
+              //onClick, onRelease 함수 내에서는 this 가 인식이 안된다.(왜지?)
+              //그래서 self라는 변수에 따로 this를 저장하면 이건 인식이 됨.
+              let self = this;
+              let onClick = function() {
+                  console.log(text+' down');
+                  self.body.scale.x = 0.97;
+                  self.body.scale.y = 0.97;
+              }
+              let onRelease = function() {
+                  console.log(text+' up');
+                  self.body.scale.x = 1;
+                  self.body.scale.y = 1;
+              }
+              this.body.interactive = true;// Opt-in to interactivity
+              this.body.on('pointerdown', onClick);
+              this.body.on('pointerup', onRelease);
+              this.body.on('pointerupoutside', onRelease);
+              
+              app.stage.addChild(this.body);
+          }//constructor()
+                    
+          get x() {return this.body.x;}
+          set x(v) {this.body.x=v;}
+          
+          get y() {return this.body.y;}
+          set y(v) {this.body.y=v;}
+          
+          get text() {return this.label.text;}
+          set text(v) {this.label.text=v;}
+      }// class Button
+      
+      let button0 = new Button(
+          "button0",//{{text}}
+          100,//{{x}}
+          200,//{{y}}
+          150,//{{widht}}
+          50,//{{height}}
+          25 //{{fontSize}}
+      );
+//      app.stage.addChild(button0.body);
+      
+//      let cnt = 0;
+//      setInterval(function(){
+//          button0.x += 1;button1.y+=1;
+//          button0.text = cnt.toString();
+//          cnt += 1;
+//      }, 100);
+      
+  </script>
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>pixipy</title>
+</head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/4.3.4/pixi.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"
+          integrity="sha256-/SIrNqv8h6QGKDuNoLGA4iret+kyesCkHGzVUUV0shc="
+          crossorigin="anonymous"></script>
+<body style='margin-top:0;margin-left:0;margin-right:0;margin-bottom:0;'>
+  <script type="text/javascript">
+    
+      let app = new PIXI.Application(400, 500, {backgroundColor : 0x000000});
+      document.body.appendChild(app.view);
+      //======================================================================
+      class Text {
+          constructor(text, x, y, fontSize) {
+              let style = new PIXI.TextStyle({
+                fontFamily: 'Arial',
+                fontSize: fontSize,
+                fontStyle: 'normal',//'normal', 'italic' or 'oblique'
+                fontWeight: 'normal',//'normal', 'bold', 'bolder', 'lighter'
+                fill: ['#ffffff', '#00ff99'], // gradient
+                //stroke: '#4a1850',
+                //strokeThickness: 5,
+                //dropShadow: true,
+                //dropShadowColor: '#000000',
+                //dropShadowBlur: 4,
+                //dropShadowAngle: Math.PI/6,
+                //dropShadowDistance: 6,
+                //wordWrap: true,
+                //wordWrapWidth: 440
+            });
+
+            this.body = new PIXI.Text(text, style);
+            this.body.x = x;
+            this.body.y = y;
+
+            app.stage.addChild(this.body);
+          }
+          
+          get x() {return this.body.x;}
+          set x(v) {this.body.x=v;}
+          
+          get y() {return this.body.y;}
+          set y(v) {this.body.y=v;}
+          
+          get text() {return this.body.text;}
+          set text(v) {this.body.text=v;}
+
+          get fontSize() {return this.body.style.fontSize;}
+          set fontSize(v) {this.body.style.fontSize=v;}
+      }
+      
+      let text1 = new Text(
+          "text1",
+          50,
+          50,
+          25
+      );
+      
+//      let cnt = 0;
+//      setInterval(function() {
+//          text1.fontSize+=1;
+//          text1.text = cnt.toString();
+//          cnt+=1;
+//          text1.x+=1;
+//          text1.y+=1;
+//      },100);
+      
+  </script>
+</body>
+</html>
