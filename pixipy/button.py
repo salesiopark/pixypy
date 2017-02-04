@@ -30,12 +30,3 @@ class Button(PixiObj):
         #갱신 가능한 초기값들을 저장
         self._store_inits('x', 'y', 'text', 'width', 'height', 'font_size')
         #print(self._inits)
-        
-    def _get_obj(self):
-        return {'text':self.text,
-                'x':self.x,
-                'y':self.y,
-                'width':self.width,
-                'height':self.height,
-                'font_size':self.font_size,
-               }
