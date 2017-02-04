@@ -2,7 +2,7 @@ let {{name}} = new Text(
      '{{text}}',
      {{x}},
      {{y}},
-     {{fontSize}}
+     {{font_size}}
 );
 objs['{{name}}'] = {{name}};
      

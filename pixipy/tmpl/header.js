@@ -1,9 +1,9 @@
 // contents in header file ================================
 class Text {
-    constructor(text, x, y, fontSize) {
+    constructor(text, x, y, font_size) {
         let style = new PIXI.TextStyle({
             fontFamily: 'Arial',
-            fontSize: fontSize,
+            fontSize: font_size,
             fontStyle: 'normal',//'normal', 'italic' or 'oblique'
             fontWeight: 'normal',//'normal', 'bold', 'bolder', 'lighter'
             fill: ['#ffffff', '#00ff99'], // gradient
@@ -27,13 +27,13 @@ class Text {
     get text() {return this.body.text;}
     set text(v) {this.body.text=v;}
 
-    get fontSize() {return this.body.style.fontSize;}
-    set fontSize(v) {this.body.style.fontSize=v;}
+    get font_size() {return this.body.style.fontSize;}
+    set font_size(v) {this.body.style.fontSize=v;}
 }
 //======================================================================
 class Button {
 
-    constructor(name, text, x, y, width, height, fontSize) {
+    constructor(name, text, x, y, width, height, font_size) {
         this.name = name;
         
         this.body = new PIXI.Container();
@@ -50,7 +50,7 @@ class Button {
 
         let textStyle = new PIXI.TextStyle({
             fontFamily: 'Arial',
-            fontSize: fontSize, //{{fontSize}}
+            fontSize: font_size,
             fill: '#ffffff', // gradient
             //stroke: '#FF0000',
             //strokeThickness: 1,

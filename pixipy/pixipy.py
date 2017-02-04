@@ -38,7 +38,9 @@ class Pixipy:
             if func_upd != None: func_upd()
             objs = {}
             for obj in self.__objs:
-                objs[obj._name] = obj._get_obj()
+                obj_attrs = obj._get_changed_attrs()
+                if obj_attrs:
+                    objs[obj._name] = obj_attrs
             return jsonify(objs)
         
         @app.route('/event')

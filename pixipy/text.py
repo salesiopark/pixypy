@@ -18,14 +18,11 @@ class Text(PixiObj):
             text = text,
             x = x,
             y = y,
-            fontSize = font_size
+            font_size = font_size
         )
         
         Text.__cnt += 1
-        
-    def _get_obj(self):
-        return {'text':self.text,
-                'x':self.x,
-                'y':self.y,
-                'fontSize':self.font_size
-               }
+
+        #갱신 가능한 초기값들을 저장
+        self._store_inits('x', 'y', 'text', 'font_size')
+        #print(self._inits)

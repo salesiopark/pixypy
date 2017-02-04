@@ -19,10 +19,8 @@ pp.add(b2)
 #pp.add(t2)
 #
 
-b1._x=b1.x
 def upd():
-    b1.x = b1._x
-    b1._x += 0.1
+    b1.x += 0.1
     
-#pp.run(upd)
-pp.run()
+pp.run(upd)
+#pp.run()

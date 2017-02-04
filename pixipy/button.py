@@ -22,11 +22,14 @@ class Button(PixiObj):
             y=y,
             width = width,
             height = height,
-            fontSize = font_size,
+            font_size = font_size,
         )
         
-        print(self._code)
         Button.__cnt += 1
+        
+        #갱신 가능한 초기값들을 저장
+        self._store_inits('x', 'y', 'text', 'width', 'height', 'font_size')
+        #print(self._inits)
         
     def _get_obj(self):
         return {'text':self.text,
@@ -34,17 +37,5 @@ class Button(PixiObj):
                 'y':self.y,
                 'width':self.width,
                 'height':self.height,
-                'fontSize':self.font_size,
+                'font_size':self.font_size,
                }
-    
-    '''
-    def handle_event(self):
-        print(self._name+" clicked.")
-    
-    def set_event_handler(self, func_isr):
-        self.__isr = func_isr
-    
-    def on_click_call(func=None):
-        if func != None:
-            func()
-    '''
