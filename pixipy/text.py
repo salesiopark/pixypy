@@ -1,9 +1,11 @@
 from . import render
+from . import PixiObj
 
-class Text():
+class Text(PixiObj):
     __cnt = 0
     
     def __init__(self, text=None, x=0, y=0, font_size=15):
+        super().__init__()
         self._name = "text%d"%Text.__cnt
         if text == None: text = self._name
         self.text = text
@@ -21,7 +23,7 @@ class Text():
         
         Text.__cnt += 1
         
-    def get_obj(self):
+    def _get_obj(self):
         return {'text':self.text,
                 'x':self.x,
                 'y':self.y,

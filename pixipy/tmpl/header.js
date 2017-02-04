@@ -33,9 +33,10 @@ class Text {
 //======================================================================
 class Button {
 
-    constructor(text, x, y, width, height, fontSize) {
-        let body = new PIXI.Container();
-        this.body = body;
+    constructor(name, text, x, y, width, height, fontSize) {
+        this.name = name;
+        
+        this.body = new PIXI.Container();
         this.body.x = x;
         this.body.y = y;
 
@@ -62,9 +63,16 @@ class Button {
         //그래서 self라는 변수에 따로 this를 저장하면 이건 인식이 됨.
         let self = this;
         let onClick = function() {
-          console.log(text+' down');
-          self.body.scale.x = 0.97;
-          self.body.scale.y = 0.97;
+            console.log(text+' down');
+            self.body.scale.x = 0.97;
+            self.body.scale.y = 0.97;
+            $.getJSON($SCRIPT_ROOT+'/event',
+                {obj:self.name},
+                function(data) {
+                  console.log(data);
+                }
+            )
+
         }
         let onRelease = function() {
           console.log(text+' up');

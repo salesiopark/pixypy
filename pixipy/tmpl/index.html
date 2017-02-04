@@ -9,7 +9,7 @@
   </script>
 <body style='margin-top:0;margin-left:0;margin-right:0;margin-bottom:0;'>
   <script type="text/javascript">
-      $SCRIPT_ROOT = '127.0.0.1:5000';
+      $SCRIPT_ROOT = 'http://127.0.0.1:5000';
       console.log('addr:'+$SCRIPT_ROOT);
 
       let app = new PIXI.Application({{width}}, {{height}}, {backgroundColor : 0x000000});
@@ -18,24 +18,8 @@
       
       {{objs}}
       /*
-      // Listen for animate update
-      // delta is 1 if running at 100% performance
-      // creates frame-independent tranformation
-    app.ticker.add(function(delta) {
-        console.log('tick')
-        $.getJSON('http://'+$SCRIPT_ROOT+'/update', function(data) {
-            for(let kObjs of Object.keys(data)) {
-                for(let kProp of Object.keys(data[kObjs])) {
-                    objs[kObjs][kProp] = data[kObjs][kProp]
-                    console.log(kObjs+"."+kProp+"="+data[kObjs][kProp])
-                }
-            }
-            
-        })
-    });
-    */
       setInterval( function() {
-      $.getJSON('http://'+$SCRIPT_ROOT+'/update', function(data) {
+      $.getJSON($SCRIPT_ROOT+'/update', function(data) {
             for(let kObjs of Object.keys(data)) {
                 for(let kProp of Object.keys(data[kObjs])) {
                     objs[kObjs][kProp] = data[kObjs][kProp]
@@ -45,7 +29,7 @@
             
         })
       }, 100);
-
+      */
   </script>
 </body>
 </html>

@@ -12,8 +12,8 @@ class Pixipy:
         from flask import Flask
         from flask_cors import CORS, cross_origin
         from flask import jsonify
+        from flask import request
         #from flask import render_template
-        #from flask import request
 
         app = Flask(__name__)
         CORS(app)
@@ -38,8 +38,18 @@ class Pixipy:
             if func_upd != None: func_upd()
             objs = {}
             for obj in self.__objs:
-                objs[obj._name] = obj.get_obj()
+                objs[obj._name] = obj._get_obj()
             return jsonify(objs)
+        
+        @app.route('/event')
+        def _event():
+            obj_name = request.args.get('obj', 0, type=str)
+            ret = None
+            for obj in self.__objs:
+                if obj._name == obj_name:
+                    ret = obj._handle_event()
+                    
+            return jsonify( {'ret':ret} )
         
         app.run()
         #print(self.html)
