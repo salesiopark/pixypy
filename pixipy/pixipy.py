@@ -1,4 +1,4 @@
-from . import render
+from .pixiobj import render
 
 class Pixipy:
     
@@ -20,7 +20,8 @@ class Pixipy:
 
         js_objs = open('pixipy/tmpl/header.js','r',encoding='utf8').read()
         for obj in self.__objs :
-            js_objs += obj._code
+            js_objs += obj._rendered_js_code
+        print(js_objs)
         
         self.html = render('index.html',
             width=self._width,

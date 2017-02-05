@@ -5,4 +5,3 @@ let {{name}} = new Text(
      {{font_size}}
 );
 objs['{{name}}'] = {{name}};
-     

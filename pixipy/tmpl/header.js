@@ -14,6 +14,7 @@ class Text {
         this.body = new PIXI.Text(text, style);
         this.body.x = x;
         this.body.y = y;
+        this.body.anchor.set(0.5);//중심점을 원점으로
         
         app.stage.addChild(this.body);
     }
@@ -32,22 +33,20 @@ class Text {
 }
 //======================================================================
 class Button {
-
     constructor(name, text, x, y, width, height, font_size) {
         this.name = name;
         
         this.body = new PIXI.Container();
         this.body.x = x;
         this.body.y = y;
-
+        //사각형 그리기
         this.box = new PIXI.Graphics();
-        // draw a rounded rectangle
-        this.box.lineStyle(2, 0xbbff33, 1);
-        this.box.beginFill(0x99e600, 1);//box.beginFill(0xFF00BB, 0.25);
-        this.box.drawRoundedRect(-width/2, -height/2, width, height, 10);//{{width}},{{height}}
+        this.box.lineStyle(2, 0xbbff33, 1);//외곽선 스타일
+        this.box.beginFill(0x99e600, 1);//채우기
+        this.box.drawRoundedRect(-width/2, -height/2, width, height, 10);
         this.box.endFill();
         this.body.addChild(this.box);
-
+        // 라벨 쓰기
         let textStyle = new PIXI.TextStyle({
             fontFamily: 'Arial',
             fontSize: font_size,
@@ -72,20 +71,21 @@ class Button {
                   console.log(data);
                 }
             )
-
         }
+        
         let onRelease = function() {
           console.log(text+' up');
           self.body.scale.x = 1;
           self.body.scale.y = 1;
         }
+        //touch 나 mouseclick 둘 다에 반응함
         this.body.interactive = true;// Opt-in to interactivity
         this.body.on('pointerdown', onClick);
         this.body.on('pointerup', onRelease);
         this.body.on('pointerupoutside', onRelease);
 
         app.stage.addChild(this.body);
-        }//constructor()
+    }//constructor()
 
     get x() {return this.body.x;}
     set x(v) {this.body.x=v;}
@@ -98,4 +98,3 @@ class Button {
 }// class Button
 
 // end of header file ======================================
-
