@@ -59,6 +59,7 @@ class PixiObj:
         if ret: return ret # ret가 {}라면 None 이 반환
 
     def _render_js(self):
-        kwargs = self._inits.copy() # 반드시 *복사*한 후
-        kwargs['name'] = self._name # name 필드를 추가해야 한다
+        #kwargs = self._inits.copy() # 반드시 *복사*한 후
+        #kwargs['name'] = self._name # name 필드를 추가해야 한다
+        kwargs = {**self._inits, 'name':self._name} # name 필드를 추가
         self._rendered_js_code = render(self._js_file, **kwargs)

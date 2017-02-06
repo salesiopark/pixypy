@@ -4,7 +4,7 @@ import math
 pp = pixipy.Pixipy()
 
 t1 = pixipy.Text(x=50, y=100)
-t2 = pixipy.Text('hello pixipy', x=100, y=200)
+t2 = pixipy.Text('hello pixipy', x=100, y=200, font_size=50)
 
 pp.add(t1)
 pp.add(t2)

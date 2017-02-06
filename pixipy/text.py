@@ -5,7 +5,7 @@ from .pixiobj import PixiObj
 class Text(PixiObj):
     __count = 0
     
-    def __init__(self, text=None, x=0, y=0, font_size=15):
+    def __init__(self, text=None, x=0, y=0, font_size=30):
         super().__init__('text.js')
         
         self._name = "text%d"%Text.__count

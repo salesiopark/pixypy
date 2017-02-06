@@ -6,7 +6,7 @@ class Text {
             fontSize: font_size,
             fontStyle: 'normal',//'normal', 'italic' or 'oblique'
             fontWeight: 'normal',//'normal', 'bold', 'bolder', 'lighter'
-            fill: ['#ffffff', '#00ff99'], // gradient
+            fill: ['#ffffff', '#ccff99'], // gradient
             //stroke: '#FFFFFF',
             //strokeThickness: 1,
         });

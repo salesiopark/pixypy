@@ -3,8 +3,8 @@ from .pixiobj import render
 class Pixipy:
     
     def __init__(self,
-                 width=200,
-                 height=300,
+                 width=480,
+                 height=600,
                  background_color = 0x000000,
                  update=False,
                  update_time=100
