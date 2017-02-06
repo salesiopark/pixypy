@@ -16,23 +16,38 @@ class PixiObj:
     def __init__(self, js_file=None):
         self._js_file = js_file # /tmpl/ 에 위치한 js template파일
         self._event_handler = None
-        self._inits = None
+        self._inits = None #초기 (지정된) attr 값들을 저장한다.
+        self._update_func = None
 
     # self.x 는 self.__dict__['x'] 와 같다. 아래 메서드는
     # self.__dict__['x']를 self['x']와 같게 만든다.(읽기만 가능)
     def __getitem__(self, key):
         return self.__dict__[key]
     
-    # self._event_handler 는 객체를 첫 인자로 넘긴다.
-    # 따라서 외부함수에서 (자기)객체의 속성을 접근할 수 있다.
+    """
+    self._event_handler 는 객체를 첫 인자로 넘긴다.
+    따라서 외부함수에서 (자기)객체의 속성을 접근할 수 있다.
+    """
+    def set_event_handler(self, func):
+        self._event_handler = func
+
     def _handle_event(self):
         if self._event_handler != None:
             return self._event_handler(self)
         else:
             return None
     
-    def set_event_handler(self, func):
-        self._event_handler = func
+    '''
+    사용자가 update 함수를 등록할 수 있다.
+    pixipy 에서는 update 요구 시 self._update()함수를 호출한다.
+    외부함수에서도 (자기)객체의 속성을 접근할 수 있다.
+    '''
+    def set_update_func(self, func):
+        self._update_func = func
+
+    def _update(self):
+        if self._update_func != None:
+            self._update_func(self)
         
     # update 에 사용될 attr 키들을 self._inits 딕에 저장한다.
     def _store_inits(self, *args):

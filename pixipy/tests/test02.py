@@ -1,7 +1,7 @@
 import pixipy
 import math
 
-pp = pixipy.Pixipy()
+pp = pixipy.Pixipy(update=True)
 
 #t1 = pixipy.Text()
 t2 = pixipy.Text('hello pixipy', x=50)
@@ -20,8 +20,11 @@ pp.add(b2)
 #pp.add(t2)
 #
 
-def upd():
-    b1.x += 0.1
+def upd(this):
+    this.x += 0.1
     
-pp.run(upd)
+b1.set_update_func(upd)
+t2.set_update_func(upd)
+    
+pp.run()
 #pp.run()

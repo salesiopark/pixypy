@@ -12,24 +12,16 @@
       $SCRIPT_ROOT = 'http://127.0.0.1:5000';
       console.log('addr:'+$SCRIPT_ROOT);
 
-      let app = new PIXI.Application({{width}}, {{height}}, {backgroundColor : 0x000000});
+      let app = new PIXI.Application(
+          {{width}},
+          {{height}},
+          {backgroundColor:{{background_color}} }
+      );
       document.body.appendChild(app.view);
       let objs = {};
       
       {{objs}}
-      ///*
-      setInterval( function() {
-      $.getJSON($SCRIPT_ROOT+'/update', function(data) {
-            for(let kObjs of Object.keys(data)) {
-                for(let kProp of Object.keys(data[kObjs])) {
-                    objs[kObjs][kProp] = data[kObjs][kProp]
-                    console.log(kObjs+"."+kProp+"="+data[kObjs][kProp])
-                }
-            }
-            
-        })
-      }, 100);
-      //*/
+      {{update}}
   </script>
 </body>
 </html>
